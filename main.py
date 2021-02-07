@@ -1,7 +1,5 @@
 '''
 
-    rpi server path     : '/home/pi/python_projects/webServer'
-
     !!!JPEG IMAGES ONLY ON WEB!!!
 
 '''
