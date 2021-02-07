@@ -23,12 +23,12 @@ content_type_html = "Content-Type: text/html\r\n"
 content_type_css = "Content-Type: text/css\r\n"
 content_type_js = "Content-Type: text/javascript\r\n"
 
-SERVER_IP = "192.168.0.190"
+SERVER_IP = "192.168.0.190" #Your private ip address
 ENCODE_TYPE = "utf-8"
-PORT = 8080
+PORT = 8080                 #Port where you want to host your server (Port 80 requires admin privileges)
 ADDR = (SERVER_IP, PORT)
 
-LOG_NAME = ".server_log.txt"
+LOG_NAME = ".server_log.txt"    #Server Log Name
 LOG_PATH = os.getcwd()
 LOG_PATH = os.path.join(LOG_PATH, LOG_NAME)
 
@@ -41,7 +41,7 @@ log = open(LOG_PATH, "a+")
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(ADDR)
 
-def LogPrint(arg, printData=True):
+def LogPrint(arg, printData=True):      #Log function (prints to console and writes to log file *printing to console can be disabled*)
     if printData:
         print(arg)
         log.write(arg + "\n")
@@ -50,13 +50,13 @@ def LogPrint(arg, printData=True):
         log.write(arg + "\n")
         log.flush()
 
-def rcvMsg(sockInstance, header):
+def rcvMsg(sockInstance, header):   #Unused function
     
     recieved = sockInstance.recv(header).decode(ENCODE_TYPE)
     return recieved
         
 
-def GetTime():
+def GetTime():                  #Returns time in [ HH h-mm m-ss s] format
     timeTemp = time.localtime(time.time())
     return f"[ {timeTemp.tm_hour}H-{timeTemp.tm_min}m-{timeTemp.tm_sec}s ] "
 
@@ -141,7 +141,6 @@ def Server_Start(ServerInstance):
     LogPrint(GetTime() + "Initiliazing...")
 
     if power:
-        LogPrint(GetTime() + "Server critical threads : 2")                          # REMEMBER TO CHANGE SERVER CRITICAL THREADS!!!!!!!!
         LogPrint(GetTime() + "Sys version             : {}".format(sys.version))
         LogPrint(GetTime() + "Current server Ip       : {}".format(SERVER_IP))
         LogPrint(GetTime() + "Current Port            : {}".format(PORT))
